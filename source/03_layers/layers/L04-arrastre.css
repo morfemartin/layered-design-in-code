@@ -1,0 +1,44 @@
+/* L04 — «Aruba Basics» (featured-collection real, captura 3x del tema) saliendo del móvil como una hoja
+   que se dobla al estirarla. Dibujada en canvas por franjas de 1 px con perspectiva (ver script en cover.html).
+   Tamaño de la hoja: 470 × 603 (+20 % sobre v1). */
+:root{--editor-blue:#2C6ECB}
+.l04 .paper-wrap{position:absolute;left:904px;top:136px;width:720px;height:860px;transform:rotateZ(-6deg);transform-origin:24px 430px}
+.l04 .paper-wrap{top:566px;margin-top:-430px}
+.l04 .paper-canvas{position:absolute;inset:0;width:720px;height:860px}
+.l04 .paper-shadow{position:absolute;left:930px;top:640px;width:520px;height:560px;border-radius:40px;
+  background:rgba(10,22,11,.45);filter:blur(44px);transform:rotate(-6deg) skewX(-8deg)}
+.l04 .tag{position:absolute;left:22px;top:92px;display:flex;align-items:center;gap:8px;height:31px;padding:0 13px 0 10px;
+  border-radius:8px 8px 8px 0;background:var(--editor-blue);color:#fff;font:600 15px/1 var(--font-ui);white-space:nowrap}
+.l04 .tag svg{width:14px;height:14px;opacity:.9}
+.l04 .plus{position:absolute;left:250px;top:112px;width:28px;height:28px;border-radius:50%;background:var(--editor-blue);color:#fff;
+  display:grid;place-items:center;font:500 21px/1 var(--font-ui);box-shadow:0 0 0 3px rgba(255,255,255,.9)}
+.l04 .slot{position:absolute;left:532px;top:1030px;width:536px;height:140px;border:2px dashed var(--editor-blue);border-bottom:0;
+  border-radius:8px 8px 64px 64px;background:linear-gradient(180deg,#E4E9EC 0%,#E9ECE8 100%);
+  box-shadow:inset 0 10px 18px -12px rgba(23,32,42,.25)}
+/* v3.1: la hoja nace en el hueco del móvil (centro y 800) y la sombra la sigue sin manchar el móvil */
+.l04 .paper-wrap{top:800px}
+.l04 .paper-shadow{left:1010px;top:560px;width:470px;height:500px;background:rgba(10,22,11,.38);filter:blur(40px);transform:rotate(-10deg) skewX(-10deg)}
+/* v4: el canvas cubre el lienzo completo; la geometría vive en el script (curvas T y B) */
+.l04 .paper-wrap{left:0;top:0;margin:0;width:1600px;height:1200px;transform:none}
+.l04 .paper-canvas{width:1600px;height:1200px}
+.l04 .tag{transform-origin:0 100%;border-radius:8px 8px 8px 0}
+.l04 .paper-shadow{left:1030px;top:620px;width:430px;height:520px;transform:rotate(-14deg) skewX(-12deg);background:rgba(10,22,11,.36)}
+/* v5: vuelve el modelo v3 (canvas 720×860 girado -6°), curva más marcada, sin esquina doblada */
+.l04 .paper-wrap{left:904px;top:800px;margin-top:-430px;width:720px;height:860px;transform:rotateZ(-6deg);transform-origin:24px 430px}
+.l04 .paper-canvas{width:720px;height:860px}
+.l04 .tag{left:22px;top:92px;transform:none}
+.l04 .paper-shadow{left:1000px;top:560px;width:470px;height:500px;transform:rotate(-12deg) skewX(-12deg);background:rgba(10,22,11,.38)}
+/* v7: perspectiva global como la v4 — la hoja nace lejos abajo-izquierda (hueco del móvil) y crece hacia arriba-derecha */
+.l04 .paper-wrap{transform-origin:24px 760px;
+  transform:perspective(1300px) rotateZ(-16deg) rotateY(-18deg) rotateX(8deg)}
+/* v8: se vuelve a la v5 (sin perspectiva global) y la hoja baja ~20 % de su recorrido libre */
+.l04 .paper-wrap{top:880px;transform-origin:24px 430px;transform:rotateZ(-6deg)}
+.l04 .paper-shadow{top:640px}
+/* v9: canvas más alto (780×1000, centro en y 560) → la esquina superior ya no se recorta */
+.l04 .paper-wrap{width:780px;height:1000px;margin-top:-560px;transform-origin:24px 560px}
+.l04 .paper-canvas{width:780px;height:1000px}
+.l04 .tag{top:222px}
+/* v10: sección recortada (empieza justo antes de «Essentials»): H 603 → 494 */
+.l04 .tag{top:276px}
+.l04 .paper-shadow{top:690px;height:430px}
+.l04 .paper-wrap,.l04 .paper-shadow{translate:calc(-1 * var(--side-inset)) 0}

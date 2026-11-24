@@ -1,0 +1,47 @@
+.l06 .pdp-plane {
+  position: absolute;
+  left: calc(67px + var(--side-inset));
+  top: 328px;
+  width: 390px;
+  height: 592px;
+  filter: drop-shadow(0 14px 19px #23405e80);
+  transform: perspective(1080px) rotateY(11deg);
+}
+.l06 .pdp-glass {
+  position: absolute;
+  inset: 0;
+  clip-path: url(#pdp-glass-clip);
+  backdrop-filter: blur(23px) saturate(120%);
+  background:
+    radial-gradient(ellipse at 9% 10%, #fff7, transparent 46%),
+    radial-gradient(ellipse at 93% 95%, #fff6, transparent 36%),
+    linear-gradient(123deg, #f1f4e79e, #dce7d55c 48%, #f0f0e5b8);
+}
+.l06 .pdp-contents {
+  position: absolute;
+  inset: 0;
+  /* The square gallery and the divider bend together with the iframe. */
+  background: linear-gradient(to bottom, transparent 390px, #f6f6eeb8 390px);
+  filter: url(#pdp-glass-warp);
+}
+.l06 .pdp-contents iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.l06 .pdp-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(132deg, #fff5, transparent 22%, transparent 75%, #fff4);
+}
+.l06 .pdp-rim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

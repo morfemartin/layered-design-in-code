@@ -1,0 +1,24 @@
+{% doc %}
+  Renders highlight badges driven by native product tags, so the merchant can toggle them in Admin without custom fields.
+  The exact tag "UPF 50+" (any case) shows the sun badge; any tag prefixed "badge:" shows its remaining text.
+  @param {product} product - Product supplying tags.
+  @param {string} [context] - 'pdp' (default) or 'card'.
+{% enddoc %}
+{%- capture badge_items -%}
+  {%- for tag in product.tags -%}
+    {%- assign tag_down = tag | strip | downcase -%}
+    {%- if tag_down == 'upf 50+' or tag_down == 'upf50+' -%}
+      <span class="product-badge product-badge--upf">{% render 'product-feature-icon', icon_key: 'sun' %}<span>UPF 50+</span></span>
+    {%- elsif tag_down contains 'badge:' -%}
+      {%- assign tag_prefix = tag_down | slice: 0, 6 -%}
+      {%- if tag_prefix == 'badge:' -%}
+        {%- assign badge_label = tag | remove_first: 'badge:' | remove_first: 'Badge:' | remove_first: 'BADGE:' | strip -%}
+        {%- if badge_label != blank -%}<span class="product-badge">{{ badge_label | escape }}</span>{%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign badge_items = badge_items | strip -%}
+{%- if badge_items != blank -%}
+  <div class="product-badges product-badges--{{ context | default: 'pdp' }}">{{ badge_items }}</div>
+{%- endif -%}

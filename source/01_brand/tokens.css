@@ -1,0 +1,19 @@
+/* Arrive Aruba — tokens de marca (fuente: arrive-aruba-shopify-theme/config/settings_data.json) */
+@font-face{font-family:'Geologica';src:url('../01_brand/fonts/geologica-variable.woff2') format('woff2');font-weight:100 900;font-display:block}
+@font-face{font-family:'ArriveLegacy';src:url('../01_brand/fonts/arrive-legacy-medium.woff2') format('woff2');font-weight:500;font-display:block}
+@font-face{font-family:'ArriveLegacy';src:url('../01_brand/fonts/arrive-legacy-book-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:block}
+@font-face{font-family:'PortBlair';src:url('../01_brand/fonts/arrive-port-blair.woff2') format('woff2');font-weight:400;font-display:block}
+:root{
+  --aa-sapphire:#386395; --aa-sapphire-dark:#23405E; --aa-navy:#2C4F78; --aa-lake:#5F8BB8;
+  --aa-cream:#F0F0E5; --aa-orange:#F5A169; --aa-green:#92AF88; --aa-ink:#17202A;
+  --aa-deep:#142638;            /* zafiro profundo derivado para la esquina oscura */
+  --aa-green-deep:#3F5A3E;      /* verde profundo derivado para la versión B */
+  --font-ui:'Geologica',system-ui,sans-serif;
+  --font-serif:'ArriveLegacy',Georgia,serif;
+  --font-display:'PortBlair','ArriveLegacy',serif;
+  /* lienzo Upwork 4:3 */
+  --canvas-w:1600px; --canvas-h:1200px; --safe:64px;
+  --side-inset:calc(var(--safe) * .21);
+  --safe-inline:calc(var(--safe) + var(--side-inset));
+  --shadow-color:35 64 94; /* sapphire-dark en rgb */
+}

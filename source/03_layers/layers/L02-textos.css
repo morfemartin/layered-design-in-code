@@ -1,0 +1,72 @@
+/* L02 — Textos (solo Geologica). Estilo ref. Nebula: titular sans pesado cuyas líneas
+   se desvanecen hacia el fondo (efecto vidrio). Todo vive en zonas libres de la retícula:
+   columna izquierda (x 64–510) arriba del PDP y abajo del PDP; arriba a la derecha encima de ventas. */
+.l02{font-family:var(--font-ui);color:#fff}
+
+/* Efecto vidrio por línea: blanco que pierde opacidad de arriba a abajo dentro de cada línea */
+.l02 .fade span{display:block;
+  background:linear-gradient(180deg,rgba(255,255,255,var(--a,1)) 0%,rgba(255,255,255,calc(var(--a,1)*.72)) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  padding-bottom:.08em;margin-bottom:-.08em}
+
+/* 1 · Titular, arriba a la izquierda */
+.l02 .head{position:absolute;left:var(--safe-inline);top:92px;width:450px;margin:0;
+  font-weight:600;font-size:58px;line-height:1.0;letter-spacing:-.035em}
+.l02 .head .s1{--a:.96}
+.l02 .head .s2{--a:.66}
+.l02 .head .s3{--a:.38}
+
+/* 2 · Línea de servicio, abajo a la izquierda (más grande, mismo efecto) */
+.l02 .tagline{position:absolute;left:var(--safe-inline);top:984px;width:450px;margin:0;
+  font-weight:500;font-size:34px;line-height:1.08;letter-spacing:-.025em}
+.l02 .tagline .s1{--a:.95}
+.l02 .tagline .s2{--a:.6}
+
+/* 3 · Metadatos (arriba a la derecha, encima de ventas) */
+.l02 .meta{position:absolute;top:64px;left:calc(1134px - var(--side-inset));display:flex;gap:32px;
+  font-size:15.6px;line-height:1.35;letter-spacing:.01em}
+.l02 .meta div{opacity:.9}
+.l02 .meta small{display:block;font-size:13.2px;letter-spacing:.08em;text-transform:uppercase;opacity:.55;margin-bottom:3px}
+
+/* 4 · Logo Arrive Aruba en blanco, muy pequeño, esquina superior derecha */
+.l02 .brand{position:absolute;top:56px;right:var(--safe-inline);width:84px;height:auto;opacity:.95}
+
+/* --- v4: «Shopify» es la prioridad visual --- */
+.l02 .head{position:absolute;top:84px}
+.l02 .head .big{display:inline-block;font-size:70px;font-weight:700;letter-spacing:-.04em;--a:1;
+  background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.86) 100%);-webkit-background-clip:text;background-clip:text}
+.l02 .head .bagwrap{display:inline-block;vertical-align:top;margin-left:10px;margin-top:4px;
+  transform:rotate(14deg);transform-origin:50% 70%;
+  filter:drop-shadow(0 6px 10px rgba(16,32,17,.35))}
+.l02 .head .bag{display:block;width:54px;height:54px;color:#fff}
+.l02 .head .s2{font-size:52px;--a:.62;margin-top:6px}
+.l02 .head .s3{font-size:52px;--a:.34}
+
+/* --- v5: «For Shopify» más contenido, las otras líneas menos desvanecidas, logo +30 % --- */
+.l02 .head .big{font-size:60px;font-weight:600;letter-spacing:-.035em}
+.l02 .head .bagwrap{margin-left:12px;margin-top:-4px}
+.l02 .head .bag{width:70px;height:70px}
+.l02 .head .s2{font-size:54px;--a:.82;margin-top:4px}
+.l02 .head .s3{font-size:54px;--a:.62}
+/* --- v6: logo de Shopify +20 % (70 → 84 px) --- */
+.l02 .head .bag{width:84px;height:84px}
+.l02 .head .bagwrap{margin-top:-10px}
+/* --- v7: logo de Shopify +20 % (84 → 101 px) --- */
+.l02 .head .bag{width:101px;height:101px}
+.l02 .head .bagwrap{margin-top:-18px;margin-left:10px}
+/* --- v7: logo de Shopify +10 % (84 → 92 px) --- */
+.l02 .head .bag{width:92px;height:92px}
+.l02 .head .bagwrap{margin-top:-14px}
+/* --- v8: el logo no empuja las líneas siguientes. La caja del logo mide lo mismo que la línea
+   (60 px) y el SVG desborda hacia abajo, así «Fully editable» se pega un poco al logo. --- */
+.l02 .head .bagwrap{height:60px;margin-top:-6px;overflow:visible}
+.l02 .head .bag{width:92px;height:92px;overflow:visible}
+.l02 .head .s2{margin-top:4px}
+/* --- v9: logo -10 % (92 → 83 px) para dar aire al bloque --- */
+.l02 .head .bag{width:83px;height:83px}
+.l02 .head .bagwrap{margin-top:-4px}
+/* --- v10: logo vuelve a 92 px; las líneas bajo «For Shopify» bajan ~15 % para dar aire --- */
+.l02 .head .bag{width:92px;height:92px}
+.l02 .head .bagwrap{margin-top:-6px}
+.l02 .head .s2{margin-top:14px;line-height:1.1}
+.l02 .head .s3{line-height:1.1}

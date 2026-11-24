@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- Réplica estática del home móvil de Arrive Aruba (header overlay + hero-video + ticker).
+     Fuente: arrive-aruba-shopify-theme · sections/header.liquid, hero-video.liquid, ticker.liquid,
+     templates/index.json y config/settings_data.json. Usa el CSS real del tema (critical.css + theme.css). -->
+<html class="js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<link rel="stylesheet" href="../../02_source/theme-css/critical.css">
+<link rel="stylesheet" href="../../02_source/theme-css/theme.css">
+<style>
+  @font-face{font-family:'Geologica';src:url('../../01_brand/fonts/geologica-variable.woff2') format('woff2');font-weight:100 900}
+  @font-face{font-family:'ArriveLegacy';src:url('../../01_brand/fonts/arrive-legacy-medium.woff2') format('woff2');font-weight:500}
+  @font-face{font-family:'ArriveLegacy';src:url('../../01_brand/fonts/arrive-legacy-book-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+  @font-face{font-family:'PortBlair';src:url('../../01_brand/fonts/arrive-port-blair.woff2') format('woff2');font-weight:400}
+  :root{
+    --aa-sapphire:#386395;--aa-sapphire-dark:#23405E;--aa-navy:#2C4F78;--aa-lake:#5F8BB8;
+    --aa-cream:#F0F0E5;--aa-orange:#F5A169;--aa-green:#92AF88;--aa-ink:#17202A;
+    --aa-page-width:1440px;--aa-side-space:clamp(1rem,3.5vw,3.5rem);--aa-radius:0px;
+    --aa-body-font:'Geologica',system-ui,sans-serif;--aa-serif-font:'ArriveLegacy',Georgia,serif;--aa-display-font:'PortBlair','ArriveLegacy',serif;
+  }
+  html,body{margin:0;width:390px;overflow:hidden}
+  /* estado final de las animaciones de entrada (la captura es estática) */
+  .hero-video{display:none!important}
+</style>
+</head>
+<body class="template-index motion-enabled">
+<header class="site-header site-header--overlay" style="--logo-width:156px" data-header>
+  <div class="header-inner page-width">
+    <div class="header-left">
+      <button class="icon-button menu-toggle" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h18M3 17h18" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+    <a class="header-logo" href="#" aria-label="Arrive Aruba">
+      <span class="header-logo-negative"><img src="../../01_brand/logos/arrive-logo-negative.webp" alt="Arrive Aruba" width="500" height="260"></span>
+      <span class="header-logo-blue"><img src="../../01_brand/logos/arrive-logo-blue.webp" alt="Arrive Aruba" width="500" height="260"></span>
+    </a>
+    <div class="header-right">
+      <button class="icon-button" type="button" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <button class="icon-button wishlist-link" type="button" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.8 4.7a5.4 5.4 0 0 0-7.7 0L12 5.8l-1.1-1.1a5.4 5.4 0 0 0-7.7 7.7l1.1 1.1L12 21l7.7-7.5 1.1-1.1a5.4 5.4 0 0 0 0-7.7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="icon-button cart-link" type="button" aria-label="Cart"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z" stroke="currentColor" stroke-width="1.5"/><path d="M9 9V6a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="MainContent" class="site-main" role="main">
+  <section class="hero" data-hero style="--hero-focus:35%">
+    <img class="hero-media" src="../../02_source/media/arrive-hero-poster.jpg" alt="" width="1920" height="1080">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="eyebrow is-visible" data-reveal>Aruba · Resortwear</p>
+      <div class="hero-mark is-visible" data-reveal aria-hidden="true">
+        <img class="hero-mark-static" src="../../02_source/media/arrive-a-mark.svg" alt="" width="420" height="420">
+      </div>
+      <h1 class="hero-tagline is-visible" data-reveal>The island stays with you</h1>
+      <div class="hero-actions is-visible" data-reveal>
+        <a class="button button--light" href="#">Shop the collection</a>
+      </div>
+    </div>
+    <div class="hero-scroll-cue is-visible" data-reveal aria-hidden="true"></div>
+    <button class="hero-sound" type="button" aria-pressed="false" aria-label="Sound off">
+      <span class="hero-sound-badge" aria-hidden="true">
+        <svg class="hero-sound-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="hero-sound-slash" d="M15.5 9.5l5 5m0-5l-5 5"/></svg>
+        <span class="hero-sound-eq"><i></i><i></i><i></i><i></i></span>
+      </span>
+      <span class="hero-sound-label" aria-hidden="true">Tap for sound</span>
+    </button>
+    <div class="hero-curtain is-hidden" aria-hidden="true"></div>
+  </section>
+  <section class="ticker" aria-label="Arrive Aruba highlights">
+    <div class="ticker-track" style="animation:none">
+      <span class="ticker-item">The island stays with you &nbsp; ✦</span><span class="ticker-item">Aruba resortwear &nbsp; ✦</span><span class="ticker-item">Made for sunlit arrivals &nbsp; ✦</span><span class="ticker-item">The island stays with you &nbsp; ✦</span>
+    </div>
+  </section>
+  <section class="collection-section section-space" id="aruba-basics">
+    <div class="page-width">
+      <div class="section-header is-visible" data-reveal>
+        <div><p class="eyebrow">Essentials</p><h2 class="serif-heading">Aruba Basics</h2></div>
+        <a class="text-link" href="#">View all</a>
+      </div>
+      <div class="product-grid" style="--product-columns:2">
+        <article class="product-card is-visible" data-reveal>
+          <a class="product-card-media" href="#"><img src="../../02_source/media/arrive-aruba-performance-pique-polo-blue-front.jpg" alt="Performance Piqué Polo" width="900" height="900">
+            <div class="product-badges product-badges--card"><span class="product-badge product-badge--upf"><svg class="product-feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>UPF 50+</span></span></div></a>
+          <div class="product-card-info"><div class="product-card-head"><h3 class="product-card-title"><a href="#">Performance Piqué Polo</a></h3></div>
+            <div class="product-card-buy"><div class="product-card-price"><div class="price"><span>$85.00</span></div></div></div></div>
+        </article>
+        <article class="product-card is-visible" data-reveal>
+          <a class="product-card-media" href="#"><img src="../../02_source/media/arrive-aruba-full-zip-hoodie-blue-front.jpg" alt="Full-Zip Hoodie" width="900" height="900"></a>
+          <div class="product-card-info"><div class="product-card-head"><h3 class="product-card-title"><a href="#">Full-Zip Hoodie</a></h3></div>
+            <div class="product-card-buy"><div class="product-card-price"><div class="price"><span>$128.00</span></div></div></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+<script>const y=+(new URLSearchParams(location.search).get("scroll")||0);document.documentElement.style.overflow="hidden";document.getElementById("MainContent").style.transform="translateY(-"+y+"px)";const h=document.querySelector(".site-header");const ht=new URLSearchParams(location.search).get("headertop");if(ht!==null){h.style.top=ht+"px";}const hv=new URLSearchParams(location.search).get("hero");if(hv){document.querySelector(".hero").style.minHeight=hv+"px";}if(new URLSearchParams(location.search).get("only")==="basics"){document.querySelector(".site-header").style.display="none";document.querySelector(".hero").style.display="none";document.querySelector(".ticker").style.display="none";document.getElementById("MainContent").style.transform="none";document.body.style.background="var(--aa-cream)";}</script>
+</body>
+</html>

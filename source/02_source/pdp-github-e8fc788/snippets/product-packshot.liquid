@@ -1,0 +1,42 @@
+{% doc %}
+  Product photo beside the Product details column (desktop), with a Front/Back toggle when a back view exists.
+  Front is the first gallery image; Back is the first image whose alt text mentions "back".
+  @param {product} product - Product supplying media.
+{% enddoc %}
+{%- liquid
+  assign front_media = nil
+  assign back_media = nil
+  for media in product.media
+    if media.media_type != 'image'
+      continue
+    endif
+    assign alt_down = media.alt | strip | downcase
+    assign alt_prefix = alt_down | slice: 0, 6
+    if alt_prefix == 'fabric'
+      continue
+    endif
+    if front_media == nil
+      assign front_media = media
+    elsif back_media == nil and alt_down contains 'back'
+      assign back_media = media
+    endif
+  endfor
+-%}
+{%- if front_media -%}
+  <div class="product-packshot" data-packshot>
+    {%- if back_media -%}
+      <div class="product-packshot-toggle" role="group" aria-label="{{ 'products.product.media_navigation' | t }}">
+        <button type="button" data-packshot-view="front" aria-pressed="true">{{ 'products.product.front' | t }}</button>
+        <button type="button" data-packshot-view="back" aria-pressed="false">{{ 'products.product.back' | t }}</button>
+      </div>
+    {%- endif -%}
+    <figure class="product-packshot-image" data-packshot-image="front">
+      {{ front_media.preview_image | image_url: width: 1400 | image_tag: widths: '600, 900, 1200, 1400', sizes: '50vw', loading: 'lazy', alt: front_media.alt | escape }}
+    </figure>
+    {%- if back_media -%}
+      <figure class="product-packshot-image" data-packshot-image="back" hidden>
+        {{ back_media.preview_image | image_url: width: 1400 | image_tag: widths: '600, 900, 1200, 1400', sizes: '50vw', loading: 'lazy', alt: back_media.alt | escape }}
+      </figure>
+    {%- endif -%}
+  </div>
+{%- endif -%}

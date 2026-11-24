@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-product": {
+      "type": "product",
+      "blocks": {
+        "returns": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Returns",
+            "content": "<p>Unworn pieces can be returned within 14 days of delivery, for a refund or an exchange.</p><p><a href=\"/policies/refund-policy\">Read the full Refund &amp; Returns Policy</a></p>"
+          }
+        },
+        "judge_me_reviews_review_snippet_widget_iXNTUd": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_snippet_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "reviews_selection": "auto",
+            "products": "{{ section.settings.default_back_collection.products }}",
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "min_star_rating": "inherit",
+            "show_review_media": true,
+            "max_reviews": 5,
+            "review_length": "medium",
+            "text_size": "medium",
+            "max_width": 1100,
+            "max_image_size": "small",
+            "arrows_visibility": "always_shown",
+            "transition_speed": 5,
+            "corner_styling": "soft",
+            "text_color": "",
+            "card_color": "",
+            "stars_color": "#f5a169",
+            "arrows_color": "",
+            "arrows_background_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "returns",
+        "judge_me_reviews_review_snippet_widget_iXNTUd"
+      ],
+      "settings": {
+        "default_back_collection": "",
+        "show_vendor": false,
+        "show_description": true,
+        "show_quantity_selector": false,
+        "show_dynamic_checkout": false,
+        "show_metafields": true,
+        "delivery_heading": "Delivered within 24 hours",
+        "delivery_text": "Free delivery in Noord, Oranjestad and nearby areas, usually within 24 hours.",
+        "show_sticky_mobile": true,
+        "media_fit": "contain"
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "subheading": "You may also like",
+        "heading": "",
+        "products_to_show": 3,
+        "intent": "related"
+      }
+    },
+    "178647492805e121bc": {
+      "type": "apps",
+      "settings": {}
+    },
+    "1786475097402318f2": {
+      "type": "apps",
+      "settings": {}
+    },
+    "17864752512a218597": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_VhxUXd": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_VhxUXd"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main-product",
+    "recommendations",
+    "178647492805e121bc",
+    "1786475097402318f2",
+    "17864752512a218597"
+  ]
+}

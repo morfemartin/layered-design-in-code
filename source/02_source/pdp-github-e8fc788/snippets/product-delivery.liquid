@@ -1,0 +1,12 @@
+{% doc %}
+  Renders the PDP delivery box: a product's own custom.shipping_* copy when present, otherwise the section's 24-hour delivery note.
+  @param {product} product - Product supplying optional shipping metafields.
+  @param {string} [heading] - Section delivery heading.
+  @param {string} [text] - Section delivery text.
+{% enddoc %}
+{%- capture product_shipping -%}{% render 'product-shipping', product: product %}{%- endcapture -%}
+{%- if product_shipping != blank -%}
+  {{ product_shipping }}
+{%- elsif heading != blank -%}
+  <div class="product-delivery">{% render 'icon', name: 'truck' %}<div><strong>{{ heading | escape }}</strong>{% if text != blank %}<p>{{ text | escape }}</p>{% endif %}</div></div>
+{%- endif -%}

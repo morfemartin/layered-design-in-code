@@ -1,0 +1,48 @@
+/* L05 — Puntero del ratón agarrando la esquina de la hoja. Naranja de marca con contorno blanco.
+   Dos versiones: ?cursor=hand (mano que agarra, por defecto) y ?cursor=arrow (flecha clásica).
+   La luz del fondo (--fx/--fy de L01) se mueve a este punto: el foco de luz nace en el puntero. */
+[data-bg=G]{--fx:1330px;--fy:1020px}
+.l05 .cursor{position:absolute;left:1385px;top:1040px;width:0;height:0}
+.l05 .cursor svg{position:absolute;overflow:visible;
+  filter:drop-shadow(0 14px 12px rgba(10,22,11,.45)) drop-shadow(0 3px 3px rgba(10,22,11,.35))}
+.l05 .cursor.hand svg{width:132px;height:132px;left:-66px;top:-70px;transform:rotate(-14deg)}
+.l05 .cursor.arrow svg{width:78px;height:122px;left:-6px;top:-6px;transform:rotate(-8deg);transform-origin:6px 6px}
+.l05 .cursor.hand .arrow-svg,.l05 .cursor.arrow .hand-svg{display:none}
+/* v2: flecha 3D (por defecto). Extrusión real (12 capas desplazadas = grosor), cara superior con
+   degradado y borde blanco, brillo especular, sombra proyectada sobre la hoja. Perspectiva con la punta
+   como origen: la punta toca la esquina y la cola viene hacia el espectador. */
+.l05 .cursor.hand .arrow3d,.l05 .cursor.arrow .hand-svg{display:none}
+.l05 .arrow3d{position:absolute;left:-10px;top:-10px;width:170px;height:232px;transform-origin:10px 10px;
+  transform:perspective(700px) rotateX(16deg) rotateY(-24deg) rotateZ(-12deg)}
+.l05 .arrow3d svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;filter:none}
+.l05 .arrow3d .a-body{filter:drop-shadow(0 2px 2px rgba(10,22,11,.25))}
+.l05 .arrow3d .a-shadow{opacity:.42;filter:blur(7px);transform:translate(26px,40px) skewX(-18deg) scale(.96)}
+/* v3: más grande (≈ 2,3×) y perspectiva más suave para que no se aplaste */
+.l05 .arrow3d{left:-14px;top:-14px;width:250px;height:368px;transform-origin:14px 14px;
+  transform:perspective(900px) rotateX(10deg) rotateY(-16deg) rotateZ(-14deg)}
+.l05 .arrow3d .a-shadow{opacity:.45;filter:blur(10px);transform:translate(34px,52px) skewX(-16deg) scale(.95)}
+/* la regla antigua «.cursor.arrow svg» (78×122) ganaba por especificidad: se anula aquí */
+.l05 .cursor.arrow .arrow3d svg{left:0;top:0;width:100%;height:100%;transform:none;filter:none}
+.l05 .cursor.arrow .arrow3d .a-body{filter:drop-shadow(0 2px 2px rgba(10,22,11,.25))}
+.l05 .cursor.arrow .arrow3d .a-shadow{opacity:.45;filter:blur(10px);transform:translate(34px,52px) skewX(-16deg) scale(.95)}
+/* v4: tamaño final ≈ 140 × 206 px, cola inclinada hacia la derecha para que quepa en el lienzo */
+.l05 .cursor{left:1378px;top:1022px}
+.l05 .cursor.arrow .arrow3d{left:-8px;top:-8px;width:140px;height:206px;transform-origin:8px 8px;
+  transform:perspective(900px) rotateX(12deg) rotateY(-18deg) rotateZ(-26deg)}
+.l05 .cursor.arrow .arrow3d .a-shadow{transform:translate(22px,34px) skewX(-14deg) scale(.95);filter:blur(8px)}
+/* v5: cursor clásico de píxeles en vóxeles 3D (ref. del cliente): borde en bloques oscuros elevados,
+   relleno blanco con rejilla, grosor real y sombra suave. Sin naranja. */
+.l05 .cursor.arrow .arrow3d{left:-10px;top:-10px;width:150px;height:238px;transform-origin:10px 10px;
+  transform:perspective(900px) rotateX(18deg) rotateY(-20deg) rotateZ(-24deg)}
+.l05 .cursor.arrow .arrow3d .a-shadow{opacity:.38;filter:blur(9px);transform:translate(30px,40px) skewX(-14deg) scale(.95)}
+/* v5.1: un 15 % más pequeño para que la cola respete el margen inferior (64 px) */
+.l05 .cursor.arrow .arrow3d{width:128px;height:203px}
+/* v5.2: glow suave alrededor del puntero (halo cálido, sin naranja saturado) */
+.l05 .cursor.arrow .arrow3d .a-body{filter:
+  drop-shadow(0 0 6px rgba(255,250,240,.85))
+  drop-shadow(0 0 18px rgba(255,236,214,.55))
+  drop-shadow(0 2px 2px rgba(10,22,11,.25))}
+/* v5.3: +20 % (128×203 → 154×244) y subido 48 px para que la cola respete el margen inferior */
+.l05 .cursor{left:1380px;top:974px}
+.l05 .cursor.arrow .arrow3d{width:154px;height:244px}
+.l05 .cursor{left:1350px;top:974px}

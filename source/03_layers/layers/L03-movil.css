@@ -1,0 +1,54 @@
+/* L03 — iPhone en CSS con la web real dentro (iframe 390 px = viewport real de iPhone).
+   Caja exterior 540 × 1110 en x 530 · y 60 (≈31 % del lienzo). */
+.l03 .phone{position:absolute;left:530px;top:60px;width:540px;height:1110px;border-radius:84px;
+  background:linear-gradient(145deg,#5a6360 0%,#2b302f 18%,#181c1b 50%,#2f3533 82%,#6b7471 100%);
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,.10) inset,
+    0 60px 90px -30px rgba(10,22,11,.75),
+    0 30px 50px -20px rgba(10,22,11,.55),
+    0 0 0 1px rgba(0,0,0,.6)}
+/* botones laterales */
+.l03 .phone::before,.l03 .phone::after{content:"";position:absolute;width:5px;border-radius:3px;background:linear-gradient(90deg,#2a2f2e,#626b68)}
+.l03 .phone::before{left:-4px;top:230px;height:70px;box-shadow:0 100px 0 #3a403e,0 0 0 transparent}
+.l03 .phone::after{right:-4px;top:300px;height:120px}
+/* pantalla */
+.l03 .screen{position:absolute;inset:13px;border-radius:72px;overflow:hidden;background:#03070b;
+  box-shadow:0 0 0 3px #050707}
+.l03 .statusbar{position:absolute;left:0;right:0;top:0;height:60px;z-index:3;display:flex;align-items:center;justify-content:space-between;
+  padding:6px 46px 0 56px;font:600 19px/1 var(--font-ui);color:#fff;letter-spacing:-.01em}
+.l03 .statusbar .icons{display:flex;gap:7px;align-items:center}
+.l03 .island{position:absolute;left:50%;top:16px;width:150px;height:42px;margin-left:-75px;border-radius:22px;background:#000;z-index:4}
+/* web: 390 px de viewport escalados al ancho de pantalla (514 px) */
+.l03 .site{position:absolute;left:0;top:60px;width:390px;height:778px;border:0;transform-origin:0 0;transform:scale(1.3179);z-index:1;background:#03070b}
+.l03 .homebar{position:absolute;left:50%;bottom:12px;width:170px;height:6px;margin-left:-85px;border-radius:4px;background:rgba(255,255,255,.85);z-index:3}
+/* reflejo de cristal muy sutil */
+.l03 .glare{position:absolute;inset:0;border-radius:72px;z-index:5;pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,0) 28%,rgba(255,255,255,0) 70%,rgba(255,255,255,.05) 100%)}
+
+/* --- v2: sin marco. Solo la pantalla, flotando, con esquinas de pantalla de iPhone.
+   La web baja (?scroll) para mostrar el final del hero, la franja naranja y Aruba Basics. --- */
+.l03 .phone{background:none;box-shadow:none;border-radius:64px}
+.l03 .phone::before,.l03 .phone::after{display:none}
+.l03 .screen{inset:0;border-radius:64px;box-shadow:
+  0 0 0 1px rgba(255,255,255,.14),
+  0 60px 90px -30px rgba(10,22,11,.75),
+  0 30px 50px -20px rgba(10,22,11,.5)}
+.l03 .statusbar,.l03 .island{display:none}
+.l03 .site{top:0;width:390px;height:802px;transform:scale(1.3846)}
+.l03 .glare{border-radius:64px}
+.l03 .homebar{display:none}
+
+/* --- v3: sin marco, pero con la cámara (isla), la hora 11:11, la señal y la batería, como la ref.
+   La web corre por debajo de la barra de estado (pantalla completa). --- */
+.l03 .statusbar{display:flex;height:66px;padding:10px 54px 0 62px;font-size:21px;
+  text-shadow:0 1px 6px rgba(0,0,0,.35)}
+.l03 .statusbar .icons svg{transform:scale(1.12)}
+.l03 .island{display:block;top:20px;width:156px;height:44px;margin-left:-78px}
+/* barra de estado con fondo propio que se funde con el hero (como Safari): limpia la «A» cortada */
+.l03 .statusbar{height:118px;align-items:flex-start;padding-top:38px;
+  background:linear-gradient(180deg,#03070b 0%,#03070b 52%,rgba(3,7,11,.75) 72%,rgba(3,7,11,0) 100%)}
+/* header del tema visible bajo la barra de estado: la barra se acorta para no taparlo */
+.l03 .statusbar{height:70px;background:linear-gradient(180deg,#03070b 0%,#03070b 70%,rgba(3,7,11,0) 100%)}
+/* --- v5: la web empieza DEBAJO de la cámara y la barra de estado (como Safari): nada se corta arriba --- */
+.l03 .statusbar{height:72px;padding-top:10px;align-items:center;background:#03070b}
+.l03 .site{top:72px;height:750px}

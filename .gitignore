@@ -1,0 +1,8 @@
+.DS_Store
+source/04_exports/*
+!source/04_exports/.gitkeep
+node_modules/
+
+# brand typefaces under commercial license (not redistributable)
+arrive-legacy-*.woff2
+arrive-port-blair.woff2

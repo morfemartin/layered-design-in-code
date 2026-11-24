@@ -1,0 +1,19 @@
+.upwork-crop {
+  --upwork-content-scale: .843;
+  /* The original 77.44px side margin grows by 10% after scaling. */
+  --side-inset: calc(var(--safe) * (1.331 / var(--upwork-content-scale) - 1));
+}
+
+.upwork-crop .l02 :is(.cover-left, .cover-right) {
+  position: absolute;
+  inset: 0;
+}
+
+.upwork-crop :is(.cover-left, .cover-right, .l03, .l04, .l05, .l06, .l07, .l09) {
+  translate: 0 -4px;
+  transform: scale(var(--upwork-content-scale));
+}
+
+.upwork-crop :is(.cover-left, .l06, .l09) { transform-origin: left center; }
+.upwork-crop :is(.cover-right, .l07) { transform-origin: right center; }
+.upwork-crop .l05 { transform-origin: 1350px center; }

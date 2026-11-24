@@ -1,0 +1,170 @@
+/* L01 — Fondo degradado. Tres versiones: [data-bg=A|B|C] en <html> */
+.l01{position:absolute;inset:0;overflow:hidden}
+.l01 .grad,.l01 .glow,.l01 .grain,.l01 .vignette{position:absolute;inset:0}
+
+/* A — Atardecer: zafiro profundo → lake → naranja */
+[data-bg=A] .l01 .grad{background:linear-gradient(140deg,var(--aa-deep) 0%,var(--aa-sapphire-dark) 22%,var(--aa-sapphire) 46%,var(--aa-lake) 62%,#C9A28A 80%,var(--aa-orange) 100%)}
+[data-bg=A] .l01 .glow{background:
+  radial-gradient(60% 55% at 92% 100%,rgba(245,161,105,.85) 0%,rgba(245,161,105,0) 70%),
+  radial-gradient(45% 40% at 50% 8%,rgba(95,139,184,.35) 0%,rgba(95,139,184,0) 70%)}
+
+/* B — Salvia: verde profundo → verde → crema, toque zafiro */
+[data-bg=B] .l01 .grad{background:linear-gradient(150deg,#22361F 0%,var(--aa-green-deep) 28%,#6F8E66 52%,var(--aa-green) 70%,#C7D3B8 86%,var(--aa-cream) 100%)}
+[data-bg=B] .l01 .glow{background:
+  radial-gradient(42% 42% at 96% 4%,rgba(56,99,149,.45) 0%,rgba(56,99,149,0) 70%),
+  radial-gradient(55% 50% at 50% 55%,rgba(240,240,229,.18) 0%,rgba(240,240,229,0) 70%)}
+
+/* C — Malla de tres tonos: zafiro / naranja / verde sobre azul marino */
+[data-bg=C] .l01 .grad{background:var(--aa-sapphire-dark)}
+[data-bg=C] .l01 .glow{background:
+  radial-gradient(60% 65% at 8% 6%,var(--aa-sapphire) 0%,rgba(56,99,149,0) 70%),
+  radial-gradient(55% 60% at 98% 96%,var(--aa-orange) 0%,rgba(245,161,105,0) 68%),
+  radial-gradient(50% 55% at 4% 100%,var(--aa-green) 0%,rgba(146,175,136,0) 66%),
+  radial-gradient(45% 45% at 88% 10%,rgba(95,139,184,.8) 0%,rgba(95,139,184,0) 70%),
+  radial-gradient(40% 40% at 50% 50%,rgba(20,38,56,.55) 0%,rgba(20,38,56,0) 75%)}
+
+/* Común: grano fino (evita bandas en el degradado) + viñeta en sapphire-dark */
+.l01 .grain{opacity:.10;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.l01 .vignette{background:radial-gradient(120% 95% at 50% 45%,rgba(20,38,56,0) 55%,rgba(20,38,56,.45) 100%)}
+
+/* ---------- Variantes de B con toque naranja ---------- */
+/* Base común B2/B3: salvia más profunda abajo a la derecha para que el móvil crema contraste */
+[data-bg=B2] .l01 .grad,[data-bg=B3] .l01 .grad{background:linear-gradient(150deg,#1E311C 0%,var(--aa-green-deep) 30%,#64835C 56%,#86A27C 78%,#A9BC9C 100%)}
+
+/* B2 — «Sol de Aruba»: un sol bajo a la derecha, a medio ocultar tras el horizonte,
+   con anillos finos como el icono UPF del tema. El naranja nace de la luz, no de una mancha. */
+[data-bg=B2] .l01 .glow{background:
+  radial-gradient(42% 42% at 4% 2%,rgba(56,99,149,.40) 0%,rgba(56,99,149,0) 70%),
+  radial-gradient(38% 30% at 88% 78%,rgba(245,161,105,.55) 0%,rgba(245,161,105,.18) 45%,rgba(245,161,105,0) 75%)}
+[data-bg=B2] .l01 .sun{position:absolute;left:1390px;top:930px;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#FFD3AE 0%,var(--aa-orange) 55%,#E88A55 100%);
+  box-shadow:0 0 120px 40px rgba(245,161,105,.45);filter:blur(1.5px)}
+[data-bg=B2] .l01 .rings{position:absolute;left:1390px;top:930px;width:0;height:0}
+[data-bg=B2] .l01 .rings i{position:absolute;border-radius:50%;border:1.5px solid rgba(255,214,180,.22);transform:translate(-50%,-50%)}
+[data-bg=B2] .l01 .rings i:nth-child(1){width:440px;height:440px}
+[data-bg=B2] .l01 .rings i:nth-child(2){width:620px;height:620px;border-color:rgba(255,214,180,.14)}
+[data-bg=B2] .l01 .rings i:nth-child(3){width:840px;height:840px;border-color:rgba(255,214,180,.08)}
+[data-bg=B2] .l01 .horizon{position:absolute;left:0;right:0;top:1040px;bottom:0;
+  background:linear-gradient(180deg,rgba(46,70,44,.0) 0%,rgba(46,70,44,.55) 6%,rgba(30,49,28,.85) 100%);
+  backdrop-filter:blur(6px)}
+
+/* B3 — «Luz de tarde»: un haz diagonal de luz naranja que cruza el lienzo detrás del móvil,
+   como el sol entrando por una ventana. Guía la mirada de abajo-derecha hacia el centro. */
+[data-bg=B3] .l01 .glow{background:
+  radial-gradient(42% 42% at 96% 4%,rgba(56,99,149,.42) 0%,rgba(56,99,149,0) 70%),
+  radial-gradient(30% 24% at 100% 100%,rgba(245,161,105,.70) 0%,rgba(245,161,105,0) 75%)}
+[data-bg=B3] .l01 .beam{position:absolute;left:-200px;top:520px;width:2400px;height:260px;transform:rotate(-28deg);transform-origin:50% 50%;
+  background:linear-gradient(90deg,rgba(245,161,105,0) 0%,rgba(245,161,105,.10) 30%,rgba(255,200,160,.42) 62%,rgba(245,161,105,.75) 100%);
+  filter:blur(40px);mix-blend-mode:screen}
+[data-bg=B3] .l01 .beam.thin{top:690px;height:70px;filter:blur(18px);opacity:.7}
+
+/* elementos ocultos por defecto (solo los usan B2/B3) */
+.l01 .sun,.l01 .rings,.l01 .horizon,.l01 .beam{display:none}
+[data-bg=B2] .l01 .sun,[data-bg=B2] .l01 .rings,[data-bg=B2] .l01 .horizon,[data-bg=B3] .l01 .beam{display:block}
+
+/* --- Ajustes tras revisión v1 --- */
+/* B2: horizonte sin corte duro (mar difuso) y sol algo más integrado */
+[data-bg=B2] .l01 .horizon{top:960px;backdrop-filter:none;
+  background:linear-gradient(180deg,rgba(30,49,28,0) 0%,rgba(30,49,28,.35) 22%,rgba(30,49,28,.85) 100%)}
+[data-bg=B2] .l01 .sun{width:260px;height:260px;margin:-130px 0 0 -130px;opacity:.92;
+  -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 92%);mask-image:linear-gradient(180deg,#000 62%,transparent 92%)}
+/* B3: el haz debe leerse naranja, no crema */
+[data-bg=B3] .l01 .beam{mix-blend-mode:normal;
+  background:linear-gradient(90deg,rgba(245,161,105,0) 0%,rgba(245,161,105,.18) 35%,rgba(245,161,105,.55) 70%,rgba(240,140,85,.85) 100%)}
+[data-bg=B3] .l01 .beam.thin{background:linear-gradient(90deg,rgba(255,200,160,0) 20%,rgba(255,190,140,.55) 80%,rgba(255,200,160,.8) 100%)}
+
+/* ---------- Orgánicos: manchas de color fundidas (mesh líquido) ---------- */
+.l01 .blobs{display:none;position:absolute;inset:-200px;filter:blur(110px) saturate(1.05)}
+.l01 .blobs b{position:absolute;display:block}
+[data-bg=D] .l01 .blobs,[data-bg=E] .l01 .blobs{display:block}
+[data-bg=D] .l01 .grad,[data-bg=E] .l01 .grad{background:#2E4A2D}
+[data-bg=D] .l01 .glow,[data-bg=E] .l01 .glow{background:none}
+
+/* D — «Líquido»: formas irregulares que se funden; el naranja entra como una marea cálida
+   desde abajo a la derecha y sube en una lengua suave hacia el centro. */
+[data-bg=D] .b1{left:-100px;top:-120px;width:1100px;height:900px;background:#1E3420;border-radius:62% 38% 55% 45%/48% 60% 40% 52%;transform:rotate(-12deg)}
+[data-bg=D] .b2{left:700px;top:-160px;width:1200px;height:760px;background:#5E8259;border-radius:40% 60% 45% 55%/60% 40% 60% 40%;transform:rotate(18deg)}
+[data-bg=D] .b3{left:300px;top:500px;width:900px;height:700px;background:#7E9E72;border-radius:55% 45% 62% 38%/42% 58% 42% 58%;transform:rotate(-24deg);opacity:.9}
+[data-bg=D] .b4{left:1100px;top:780px;width:1000px;height:820px;background:#F5A169;border-radius:58% 42% 40% 60%/55% 45% 55% 45%;transform:rotate(14deg)}
+[data-bg=D] .b5{left:820px;top:640px;width:620px;height:380px;background:#E9B48A;border-radius:70% 30% 60% 40%/50% 60% 40% 50%;transform:rotate(-32deg);opacity:.75}
+[data-bg=D] .b6{left:-160px;top:880px;width:900px;height:700px;background:#3F5E3E;border-radius:45% 55% 50% 50%/60% 40% 60% 40%}
+[data-bg=D] .b7{left:1350px;top:-60px;width:520px;height:420px;background:#92AF88;border-radius:50%;opacity:.7}
+
+/* E — «Aurora»: bandas onduladas verde/salvia/naranja que fluyen en diagonal,
+   como luz de atardecer filtrada por agua. Más suave y continuo. */
+[data-bg=E] .b1{left:-300px;top:-300px;width:2400px;height:900px;background:#1F3521;border-radius:40% 60% 50% 50%/50% 50% 50% 50%;transform:rotate(-14deg)}
+[data-bg=E] .b2{left:-200px;top:320px;width:2300px;height:520px;background:#6F8F66;border-radius:48% 52% 60% 40%/70% 30% 70% 30%;transform:rotate(-14deg)}
+[data-bg=E] .b3{left:400px;top:640px;width:1800px;height:380px;background:#F0A46E;border-radius:60% 40% 50% 50%/80% 20% 80% 20%;transform:rotate(-16deg);opacity:.9}
+[data-bg=E] .b4{left:-200px;top:900px;width:2400px;height:700px;background:#33502F;border-radius:50% 50% 40% 60%/40% 60% 40% 60%;transform:rotate(-12deg)}
+[data-bg=E] .b5{left:1300px;top:880px;width:700px;height:500px;background:#F5A169;border-radius:50%;opacity:.8}
+[data-bg=E] .b6{left:200px;top:180px;width:700px;height:400px;background:#92AF88;border-radius:60% 40% 50% 50%;opacity:.55;transform:rotate(-14deg)}
+[data-bg=E] .b7{left:-100px;top:780px;width:600px;height:300px;background:#E9B48A;border-radius:50%;opacity:.35;transform:rotate(-14deg)}
+
+/* --- Puentes de color: evitan el marrón donde el verde oscuro toca el naranja --- */
+[data-bg=D] .l01 .grad{background:#56784F}
+[data-bg=D] .b8{left:1500px;top:380px;width:760px;height:560px;background:#A9BF98;border-radius:55% 45% 50% 50%;opacity:.85}
+[data-bg=D] .b9{left:1050px;top:760px;width:560px;height:420px;background:#F3D2B0;border-radius:60% 40% 55% 45%;transform:rotate(-20deg);opacity:.7}
+[data-bg=D] .b6{background:#2F4C2E}
+
+[data-bg=E] .l01 .grad{background:#4E6E48}
+[data-bg=E] .b4{background:#3A5A37;top:1040px}
+[data-bg=E] .b8{left:700px;top:820px;width:1300px;height:300px;background:#EFCBA6;border-radius:50%;transform:rotate(-16deg);opacity:.65}
+[data-bg=E] .b9{left:1600px;top:1100px;width:700px;height:500px;background:#F5A169;border-radius:50%;opacity:.9}
+
+/* ---------- F — «Foco»: una sola fuente de luz donde el puntero arrastra la sección ----------
+   Inspiración: ref. Nebula (luz cálida que nace detrás del objeto protagonista).
+   El punto más luminoso está en --fx/--fy (punta del puntero, según el boceto).
+   Las esquinas caen a verde muy profundo. Recorrido: crema-blanco → durazno → naranja
+   → salvia cálida → verde → verde profundo (la salvia evita el marrón). */
+[data-bg=F]{--fx:1150px;--fy:860px}
+[data-bg=F] .l01 .grad{background:#0F1F10}
+[data-bg=F] .l01 .glow{background:
+  radial-gradient(260px 220px at var(--fx) var(--fy),rgba(255,244,228,1) 0%,rgba(255,236,212,.85) 30%,rgba(255,226,196,0) 100%),
+  radial-gradient(620px 520px at var(--fx) var(--fy),rgba(248,190,140,.95) 0%,rgba(245,161,105,.85) 40%,rgba(245,161,105,0) 100%),
+  radial-gradient(1100px 900px at calc(var(--fx) - 40px) calc(var(--fy) - 20px),rgba(233,148,92,.55) 0%,rgba(190,170,120,.35) 35%,rgba(150,178,130,0) 70%),
+  radial-gradient(1500px 1250px at calc(var(--fx) - 120px) calc(var(--fy) - 60px),#8FAE84 0%,#5E8257 32%,#35552F 58%,#1C321B 80%,#0F1F10 100%)}
+/* forma orgánica: dos lenguas de luz difusa para que el foco no sea un círculo perfecto */
+[data-bg=F] .l01 .blobs{display:block;filter:blur(120px)}
+[data-bg=F] .b1{left:calc(var(--fx) - 500px + 200px);top:calc(var(--fy) - 300px + 200px);width:700px;height:300px;background:#F5A169;border-radius:60% 40% 55% 45%;transform:rotate(-24deg);opacity:.45}
+[data-bg=F] .b2{left:calc(var(--fx) - 200px);top:calc(var(--fy) + 120px);width:900px;height:420px;background:#F0B88C;border-radius:50%;transform:rotate(-8deg);opacity:.35}
+[data-bg=F] .b3{left:0;top:0;width:1100px;height:800px;background:#0C1A0D;border-radius:50%;opacity:.7}
+[data-bg=F] .b4{left:1500px;top:-100px;width:800px;height:700px;background:#132714;border-radius:50%;opacity:.6}
+[data-bg=F] .b5{left:-100px;top:1100px;width:900px;height:600px;background:#0E1D0F;border-radius:50%;opacity:.7}
+[data-bg=F] .b6,[data-bg=F] .b7,[data-bg=F] .b8,[data-bg=F] .b9{display:none}
+[data-bg=F] .l01 .vignette{background:radial-gradient(110% 95% at calc(var(--fx) - 150px) var(--fy),rgba(10,22,11,0) 50%,rgba(10,22,11,.55) 100%)}
+
+/* ---------- Guía de composición (solo con ?guide=1; no se exporta en el final) ---------- */
+.guide{display:none;position:absolute;inset:0;pointer-events:none;font:500 14px/1 var(--font-ui);color:rgba(255,255,255,.8)}
+.guide i{position:absolute;border:2px dashed rgba(255,255,255,.55);border-radius:18px}
+.guide span{position:absolute;padding:4px 8px;background:rgba(0,0,0,.35);border-radius:6px}
+html.show-guide .guide{display:block}
+
+/* ---------- G — «Aurora con foco»: la base orgánica de E + una luz sutil en el puntero ----------
+   Mismas manchas que E (copiadas abajo), sin núcleo blanco: el foco es un durazno suave
+   que solo aclara la banda naranja donde está el puntero. Esquinas algo más oscuras. */
+[data-bg=G] .b1{left:-300px;top:-300px;width:2400px;height:900px;background:#1F3521;border-radius:40% 60% 50% 50%/50% 50% 50% 50%;transform:rotate(-14deg)}
+[data-bg=G] .b2{left:-200px;top:320px;width:2300px;height:520px;background:#6F8F66;border-radius:48% 52% 60% 40%/70% 30% 70% 30%;transform:rotate(-14deg)}
+[data-bg=G] .b3{left:400px;top:640px;width:1800px;height:380px;background:#F0A46E;border-radius:60% 40% 50% 50%/80% 20% 80% 20%;transform:rotate(-16deg);opacity:.9}
+[data-bg=G] .b4{left:-200px;top:900px;width:2400px;height:700px;background:#33502F;border-radius:50% 50% 40% 60%/40% 60% 40% 60%;transform:rotate(-12deg)}
+[data-bg=G] .b5{left:1300px;top:880px;width:700px;height:500px;background:#F5A169;border-radius:50%;opacity:.8}
+[data-bg=G] .b6{left:200px;top:180px;width:700px;height:400px;background:#92AF88;border-radius:60% 40% 50% 50%;opacity:.55;transform:rotate(-14deg)}
+[data-bg=G] .b7{left:-100px;top:780px;width:600px;height:300px;background:#E9B48A;border-radius:50%;opacity:.35;transform:rotate(-14deg)}
+[data-bg=G] .l01 .grad{background:#4E6E48}
+[data-bg=G] .b4{background:#3A5A37;top:1040px}
+[data-bg=G] .b8{left:700px;top:820px;width:1300px;height:300px;background:#EFCBA6;border-radius:50%;transform:rotate(-16deg);opacity:.65}
+[data-bg=G] .b9{left:1600px;top:1100px;width:700px;height:500px;background:#F5A169;border-radius:50%;opacity:.9}
+[data-bg=G]{--fx:1150px;--fy:860px}
+[data-bg=G] .l01 .blobs{display:block;filter:blur(130px) saturate(1.05)}
+[data-bg=G] .l01 .glow{background:
+  radial-gradient(520px 380px at var(--fx) var(--fy),rgba(255,226,196,.55) 0%,rgba(250,205,165,.25) 45%,rgba(245,180,130,0) 100%),
+  radial-gradient(900px 640px at calc(var(--fx) + 60px) calc(var(--fy) - 30px),rgba(245,161,105,.18) 0%,rgba(245,161,105,0) 100%)}
+[data-bg=G] .l01 .vignette{background:
+  radial-gradient(120% 100% at calc(var(--fx) - 200px) calc(var(--fy) - 120px),rgba(16,32,17,0) 52%,rgba(16,32,17,.42) 100%)}
+
+/* --- G v2: parte superior más oscura, como F, pero con formas orgánicas --- */
+[data-bg=G] .b1{background:#12230F;top:-380px;height:980px}
+[data-bg=G] .b6{left:-150px;top:-220px;width:1300px;height:620px;background:#0F1F10;border-radius:62% 38% 55% 45%/50% 60% 40% 50%;transform:rotate(-10deg);opacity:.9}
+[data-bg=G] .b7{left:1150px;top:-260px;width:1100px;height:560px;background:#16291A;border-radius:45% 55% 60% 40%/60% 40% 60% 40%;transform:rotate(12deg);opacity:.85}
+[data-bg=G] .l01 .vignette{background:
+  linear-gradient(180deg,rgba(14,28,15,.55) 0%,rgba(14,28,15,.25) 22%,rgba(14,28,15,0) 45%),
+  radial-gradient(120% 100% at calc(var(--fx) - 200px) calc(var(--fy) - 60px),rgba(16,32,17,0) 52%,rgba(16,32,17,.45) 100%)}

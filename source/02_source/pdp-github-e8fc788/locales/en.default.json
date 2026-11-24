@@ -1,0 +1,97 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "accessibility": { "skip_to_content": "Skip to content" },
+  "general": {
+    "close": "Close",
+    "view_all": "View all",
+    "learn_more": "Learn more",
+    "pagination": { "label": "Pagination", "previous": "Previous page", "next": "Next page" },
+    "404": { "eyebrow": "404", "title": "This shore could not be found.", "text": "The page may have moved or no longer exists.", "button": "Return home" }
+  },
+  "header": { "open_menu": "Open menu", "main_menu": "Main menu", "search": "Search" },
+  "footer": { "rights": "All rights reserved.", "agency_credit": "Developed in collaboration with Morfe Maison", "agency_credit_prefix": "Developed in collaboration with", "socials": "Arrive Aruba social links", "additional_socials": "Additional Arrive Aruba social links", "social_title": "Stay close", "social_copy": "Follow the island mood, new arrivals, and stories from Aruba.", "website": "Website", "menu_story": "Story", "menu_contact": "Contact", "menu_search": "Search", "menu_all": "All pieces", "menu_collections": "Collections", "menu_bag": "View bag", "menu_service": "Client service", "menu_shipping": "Shipping", "menu_returns": "Returns", "refund_policy": "Refund & Returns Policy", "shipping_policy": "Shipping Policy", "terms_of_service": "Terms of Service", "privacy_policy": "Privacy Policy" },
+  "customer": { "account": "Account" },
+  "localization": { "country": "Country and currency", "language": "Language" },
+  "wishlist": { "title": "Saved pieces", "toggle": "Save {{ product }}", "updated": "Saved pieces updated", "empty": "No saved pieces yet.", "explore": "Explore the collection", "remove": "Remove {{ product }}" },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search pieces, collections and stories",
+    "submit": "Search",
+    "results_for": "Results for “{{ terms }}”",
+    "no_results": "No results found.",
+    "result_count": "{{ count }} results"
+  },
+  "cart": {
+    "title": "Your bag",
+    "open": "Open cart",
+    "empty": "Your bag is waiting.",
+    "continue_shopping": "Explore the collection",
+    "quantity": "Quantity for {{ product }}",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "view_cart": "View bag",
+    "checkout": "Checkout",
+    "note": "Taxes and shipping calculated at checkout"
+  },
+  "products": {
+    "product": {
+      "new": "New",
+      "sale": "Sale",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "unavailable_combination": "That combination isn't available. Try a different size or color.",
+      "add_to_cart": "Add to bag",
+      "added_to_cart": "Added to your bag",
+      "quantity": "Quantity",
+      "decrease_quantity": "Decrease quantity",
+      "increase_quantity": "Increase quantity",
+      "details": "Details",
+      "description": "Description",
+      "materials": "Materials",
+      "care": "Care",
+      "fit": "Fit",
+      "size_guide": "Size guide",
+      "fit_guide": "Fit guide",
+      "previous_media": "Previous image",
+      "next_media": "Next image",
+      "front": "Front",
+      "back": "Back",
+      "details_heading": "Product details",
+      "sizes": "Sizes",
+      "fabric": "Fabric",
+      "fabric_composition": "Fabric & composition",
+      "this_product": "This piece",
+      "fit_between_sizes": "Between sizes? For an easier fit, choose the larger size.",
+      "units": "Measurement units",
+      "measurement": "Measurement",
+      "size_guide_provisional": "Provisional measurements. The final size chart is coming soon.",
+      "how_to_measure": "How to measure",
+      "how_to_measure_text": "Garment measured flat, in centimeters. Chest is measured 2.5 cm below the armhole, seam to seam; length from the highest point of the shoulder to the hem. Allow ±1 cm.",
+      "available_sizes": "Available sizes",
+      "features": "Product features",
+      "choose_variant": "Choose a variant",
+      "back_to_collection": "Back to collection",
+      "media": "Media for {{ product }}",
+      "media_navigation": "Product media",
+      "view_media": "View media {{ index }}",
+      "rating": "{{ rating }} out of {{ maximum }} stars",
+      "reviews": "{{ count }} reviews",
+      "tax_included": "Tax included.",
+      "tax_at_checkout": "Tax calculated at checkout."
+    }
+  },
+  "collections": { "product_count": "{{ count }} pieces", "filter": "Filter", "sort": "Sort", "apply": "Apply filters", "clear": "Clear", "clear_all": "Clear all", "empty": "No pieces match these filters.", "from": "From", "to": "To", "load_more": "Load more" },
+  "newsletter": { "email": "Email address", "submit": "Join the list", "success": "Welcome to the island." },
+  "contact": { "name": "Name", "email": "Email", "phone": "Phone", "topic": "Topic", "topic_order": "Order support", "topic_sizing": "Sizing question", "topic_island": "Island request", "message": "Message", "send": "Send message", "success": "Thank you. We will be in touch soon." },
+  "password": { "title": "The island is almost here.", "text": "Enter your email for first access.", "admin": "Enter using password", "password": "Store password", "submit": "Enter" },
+  "blogs": { "read_more": "Read story", "back": "Back to island notes" },
+  "gift_card": { "expired": "This gift card has expired", "expires_on": "Expires on {{ expires_on }}", "card": "Gift card", "use_at_checkout": "Use this code at checkout", "add_to_apple_wallet": "Add to Apple Wallet" }
+}

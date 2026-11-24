@@ -1,0 +1,9 @@
+.l09 .morfe-signature {
+  position: absolute;
+  left: var(--safe-inline);
+  top: 1089.7px;
+  width: 372px;
+  aspect-ratio: 1080 / 188;
+  background: var(--aa-orange);
+  mask: url("../../01_brand/logos/morfe-maison-curvas.svg") center / contain no-repeat;
+}

@@ -1,0 +1,214 @@
+{% doc %}
+  Garment specification taken from the Arrive Aruba tech packs: fit, fabric and flat-garment measurements.
+  Data lives here (not in Admin fields) so the size guide works without metafield setup.
+  A product's custom.size_guide rich text, when present, replaces the measurement table.
+
+  Sources:
+  - polo: AA-POLO-001 Tech Pack, page 08 Size Chart.
+  - hoodie: AA-HOODIE-001 Datos Rev02, POM principales.
+  - tee: PROVISIONAL regular-fit chart derived from the polo grading, until AA-TEE-001 publishes its own table.
+
+  @param {product} product - Product being rendered.
+  @param {string} spec_key - 'polo', 'hoodie' or 'tee' (blank renders nothing unless custom.size_guide exists).
+  @param {string} part - 'meta' (product card), 'chips' (fit chip), 'panel' (details block) or 'drawer' (fit and size guide dialog).
+  @param {number} [size_option_index] - Resolved zero-based size option position.
+{% enddoc %}
+{%- liquid
+  assign size_order = 'XS,S,M,L,XL,XXL' | split: ','
+  assign fit_position = 1
+  assign provisional = false
+  case spec_key
+    when 'polo'
+      assign fit_label = 'Regular fit'
+      assign fit_text = 'Classic regular fit: room through the chest and body, with a clean shoulder line.'
+      assign fabric_label = 'Performance piqué'
+      assign composition = 'Performance piqué knit|91% Polyester|9% Spandex' | split: '|'
+      assign rows = 'Half chest (2.5 cm below armhole)|48,51,54,57,60,63;Body length (shoulder to hem)|68,70,72,74,76,78;Shoulder width|43,45,47,49,51,53;Sleeve length|22,23,24,25,26,27;Sleeve opening (half)|17,18,19,20,21,22' | split: ';'
+    when 'hoodie'
+      assign fit_label = 'Medium fit'
+      assign fit_text = 'Comfortable without being loose: room to move freely while keeping a clean shape.'
+      assign fabric_label = 'French terry'
+      assign composition = 'French terry, smooth face and looped back|80% Cotton, ring-spun combed|20% Polyester|Fabric washed|300 g/m²' | split: '|'
+      assign rows = 'Half chest (2.5 cm below armhole)|49,51,55,58,61,65;Body length (shoulder to hem)|64,68,72,74,76,78;Sleeve length (from shoulder)|58,62.5,65,67,67.5,68;Shoulder width|42,44,47,49,51,54' | split: ';'
+    when 'tee'
+      assign fit_label = 'Regular fit'
+      assign fit_text = 'Regular, never slim: an easy line through the chest and body.'
+      assign fabric_label = 'Single jersey'
+      assign composition = 'Single jersey, matte peached finish|91% Polyester|9% Spandex' | split: '|'
+      assign rows = 'Half chest (2.5 cm below armhole)|48,51,54,57,60,63;Body length (shoulder to hem)|66,68,70,72,74,76;Shoulder width|43,45,47,49,51,53;Sleeve length|20,21,22,23,24,25' | split: ';'
+      assign provisional = true
+  endcase
+  assign custom_guide = product.metafields.custom.size_guide
+  assign has_guide = false
+  if rows.size > 0 or custom_guide != blank
+    assign has_guide = true
+  endif
+
+  assign product_sizes = ''
+  if size_option_index != nil
+    assign product_sizes = product.options_with_values[size_option_index].values | map: 'name' | join: ','
+    assign product_sizes = product_sizes | upcase | replace: '2XL', 'XXL'
+  endif
+  assign product_size_list = product_sizes | split: ','
+  assign uses_2xl = false
+  if size_option_index != nil
+    for value in product.options_with_values[size_option_index].values
+      assign value_up = value.name | upcase
+      if value_up == '2XL'
+        assign uses_2xl = true
+      endif
+    endfor
+  endif
+-%}
+
+{%- case part -%}
+  {%- when 'meta' -%}
+    {%- if spec_key != blank -%}
+      <p class="product-card-meta">
+        {{- fit_label -}}
+        {%- if size_option_index != nil -%}
+          {%- assign size_values = product.options_with_values[size_option_index].values -%}
+          {{ ' · ' }}{{ size_values.first.name | escape }}{% if size_values.size > 1 %}–{{ size_values.last.name | escape }}{% endif %}
+        {%- endif -%}
+        {{ ' · ' }}{{ fabric_label -}}
+      </p>
+    {%- endif -%}
+
+  {%- when 'chips' -%}
+    {%- if spec_key != blank -%}<span class="product-chip">{{ fit_label }}</span>{%- endif -%}
+
+  {%- when 'panel' -%}
+    {%- if spec_key != blank or has_guide -%}
+      <div class="product-spec">
+        <h2 class="product-spec-title">{{ 'products.product.details_heading' | t }}</h2>
+        {%- if has_guide -%}
+          <div class="product-spec-pills">
+            {%- if spec_key != blank -%}<button class="product-spec-pill" type="button" data-open-drawer="size-guide" data-size-guide-tab="fit" aria-haspopup="dialog" aria-expanded="false">{{ 'products.product.fit_guide' | t }}{% render 'icon', name: 'arrow' %}</button>{%- endif -%}
+            <button class="product-spec-pill" type="button" data-open-drawer="size-guide" data-size-guide-tab="size" aria-haspopup="dialog" aria-expanded="false">{{ 'products.product.size_guide' | t }}{% render 'icon', name: 'arrow' %}</button>
+          </div>
+        {%- endif -%}
+        {%- if spec_key != blank -%}
+          <dl class="product-spec-stats">
+            <div><dt>{{ 'products.product.fit' | t }}</dt><dd>{{ fit_label }}</dd></div>
+            {%- if size_option_index != nil -%}
+              {%- assign size_values = product.options_with_values[size_option_index].values -%}
+              <div><dt>{{ 'products.product.sizes' | t }}</dt><dd>{{ size_values.first.name | escape }}{% if size_values.size > 1 %} – {{ size_values.last.name | escape }}{% endif %}</dd></div>
+            {%- endif -%}
+            <div><dt>{{ 'products.product.fabric' | t }}</dt><dd>{{ fabric_label }}</dd></div>
+          </dl>
+        {%- endif -%}
+
+        {%- liquid
+          assign fabric_media = ''
+          for media in product.media
+            assign alt_prefix = media.alt | strip | downcase | slice: 0, 6
+            if alt_prefix == 'fabric' and media.media_type == 'image'
+              assign fabric_media = 'yes'
+              break
+            endif
+          endfor
+        -%}
+        {%- if composition.size > 0 or fabric_media != blank -%}
+          <div class="product-spec-fabric">
+            <h3 class="product-spec-label">{{ 'products.product.fabric_composition' | t }}</h3>
+            {%- if composition.size > 0 -%}
+              <ul class="product-spec-list">
+                {%- for line in composition -%}<li>{{ line }}</li>{%- endfor -%}
+              </ul>
+            {%- endif -%}
+            {%- if fabric_media != blank -%}
+              <div class="product-fabric-media" data-fabric-media>
+                {%- for media in product.media -%}
+                  {%- assign alt_prefix = media.alt | strip | downcase | slice: 0, 6 -%}
+                  {%- if alt_prefix == 'fabric' and media.media_type == 'image' -%}
+                    <figure class="product-fabric-figure" data-fabric-alt="{{ media.alt | downcase | escape }}">
+                      {{ media.preview_image | image_url: width: 720 | image_tag: widths: '240, 360, 480, 720', sizes: '(min-width: 900px) 240px, 45vw', loading: 'lazy', alt: media.alt | escape }}
+                      <figcaption>{{ media.alt | remove_first: 'Fabric' | remove_first: 'fabric' | remove_first: '–' | remove_first: '-' | remove_first: ':' | strip | escape }}</figcaption>
+                    </figure>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  {%- when 'drawer' -%}
+    {%- if has_guide -%}
+      <div class="nav-drawer size-guide-drawer" data-drawer="size-guide" aria-hidden="true">
+        <button class="drawer-scrim" type="button" data-close-drawer tabindex="-1" aria-label="{{ 'general.close' | t }}"></button>
+        <div class="size-guide-panel" role="dialog" aria-modal="true" aria-label="{{ 'products.product.size_guide' | t }}" data-size-guide>
+          <div class="size-guide-top">
+            <div class="size-guide-tabs" role="tablist">
+              {%- if spec_key != blank -%}<button type="button" role="tab" data-size-guide-tab-button="fit" aria-selected="false">{{ 'products.product.fit_guide' | t }}</button>{%- endif -%}
+              <button type="button" role="tab" data-size-guide-tab-button="size" aria-selected="true">{{ 'products.product.size_guide' | t }}</button>
+            </div>
+            <button class="icon-button" type="button" data-close-drawer aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+          </div>
+
+          {%- if spec_key != blank -%}
+            <div class="size-guide-body" role="tabpanel" data-size-guide-panel="fit" hidden>
+              {%- assign fit_names = 'Fitted,Regular,Relaxed,Oversized' | split: ',' -%}
+              {%- assign fit_percent = fit_position | times: 25 | plus: 12.5 -%}
+              <div class="fit-scale" aria-hidden="true">
+                <div class="fit-scale-labels">{%- for name in fit_names -%}<span{% if forloop.index0 == fit_position %} class="is-current"{% endif %}>{{ name }}</span>{%- endfor -%}</div>
+                <div class="fit-scale-track"><span style="width:{{ fit_percent }}%"></span><i style="left:{{ fit_percent }}%"></i></div>
+              </div>
+              <div class="fit-current">
+                <p class="fit-current-name">{{ fit_label }} <span>{{ 'products.product.this_product' | t }}</span></p>
+                <p>{{ fit_text }}</p>
+              </div>
+              <p class="size-guide-note">{{ 'products.product.fit_between_sizes' | t }}</p>
+            </div>
+          {%- endif -%}
+
+          <div class="size-guide-body" role="tabpanel" data-size-guide-panel="size">
+            {%- if custom_guide != blank -%}
+              <div class="rte">{{ custom_guide | metafield_tag }}</div>
+            {%- else -%}
+              <div class="size-guide-units" role="group" aria-label="{{ 'products.product.units' | t }}">
+                <button type="button" data-size-unit="cm" aria-pressed="true">cm</button>
+                <button type="button" data-size-unit="in" aria-pressed="false">in</button>
+              </div>
+              {%- if provisional -%}<p class="size-guide-provisional">{{ 'products.product.size_guide_provisional' | t }}</p>{%- endif -%}
+              <div class="size-guide-table-wrap" tabindex="0" aria-label="{{ 'products.product.size_guide' | t }}">
+                <table class="size-guide-table" data-unit="cm">
+                  <thead>
+                    <tr>
+                      <th scope="col">{{ 'products.product.measurement' | t }}</th>
+                      {%- for size in size_order -%}
+                        {%- if product_size_list.size == 0 or product_size_list contains size -%}
+                          <th scope="col">{% if size == 'XXL' and uses_2xl %}2XL{% else %}{{ size }}{% endif %}</th>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%- for row in rows -%}
+                      {%- assign row_parts = row | split: '|' -%}
+                      {%- assign row_values = row_parts.last | split: ',' -%}
+                      <tr>
+                        <th scope="row">{{ row_parts.first }}</th>
+                        {%- for size in size_order -%}
+                          {%- if product_size_list.size == 0 or product_size_list contains size -%}
+                            {%- assign value = row_values[forloop.index0] -%}
+                            {%- assign inches = value | times: 1.0 | divided_by: 2.54 | round: 1 -%}
+                            <td><span class="u-cm">{{ value }}</span><span class="u-in">{{ inches }}</span></td>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </tr>
+                    {%- endfor -%}
+                  </tbody>
+                </table>
+              </div>
+              <div class="size-guide-measure">
+                <h3 class="product-spec-label">{{ 'products.product.how_to_measure' | t }}</h3>
+                <p>{{ 'products.product.how_to_measure_text' | t }}</p>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+{%- endcase -%}
